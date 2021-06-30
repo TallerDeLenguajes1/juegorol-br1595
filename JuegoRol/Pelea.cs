@@ -39,6 +39,7 @@ namespace JuegoRol
             {
 
                 Console.WriteLine("\nGanador: ");
+                Jugador1.SubirDeNivel();
                 Jugador1.MostrarPersonaje();
                 personajes.Remove(Jugador2);
                 Jugador1.Curarse();
@@ -46,6 +47,7 @@ namespace JuegoRol
             else if (Jugador2.Salud > Jugador1.Salud)
             {
                 Console.WriteLine("\nGanador: ");
+                Jugador2.SubirDeNivel();
                 Jugador2.MostrarPersonaje();
                 personajes.Remove(Jugador1);
                 Jugador2.Curarse();

@@ -68,6 +68,15 @@ namespace JuegoRol
             }
         }
 
+        public void SubirDeNivel()
+        {
+            Nivel += 1;
+            Velocidad += random.Next(3);
+            Destreza += random.Next(3);
+            Fuerza += random.Next(3);
+            Armadura += random.Next(2);
+        }
+
         public int Velocidad { get => velocidad; set => velocidad = value; }
         public int Destreza { get => destreza; set => destreza = value; }
         public int Fuerza { get => fuerza; set => fuerza = value; }
