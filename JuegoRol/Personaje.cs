@@ -49,9 +49,23 @@ namespace JuegoRol
             float maxDamage = 50000;
 
             float damage = ((valorDeAtaque * Precision - poderDeDefensa) / maxDamage) * critChance * 10;
-               
+
 
             defensor.Salud -= damage;
+        }
+        public void Curarse()
+        {
+            if (random.Next(10) > 5)
+            {
+                if (Salud + 20 < 100)
+                {
+                    Salud += 20;
+                }
+                else
+                {
+                    Salud = 100;
+                }
+            }
         }
 
         public int Velocidad { get => velocidad; set => velocidad = value; }
@@ -66,4 +80,11 @@ namespace JuegoRol
         public int Edad { get => edad; set => edad = value; }
         public float Salud { get => salud; set => salud = value; }
     }
+    /*
+    public class ProvinciasArgentinas
+    [
+        [JsonPropertyName("cantidad")]
+        public interface Cantidad {get; set;}
+        [JsonPropertyName("")]
+    ]*/
 }

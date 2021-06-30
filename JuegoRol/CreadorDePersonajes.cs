@@ -91,6 +91,6 @@ namespace JuegoRol
             return (tipoPersonaje)valuesTipoPje.GetValue(random.Next(valuesTipoPje.Length));
         }
 
-        
+
     }
 }

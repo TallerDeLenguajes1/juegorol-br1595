@@ -20,9 +20,9 @@ namespace JuegoRol
             {
                 Jugador1.Atacar(Jugador2);
                 int Turno = nroDeAtaques;
-                Console.WriteLine("\nTurno " + Turno);
+                Console.WriteLine("\nTurno " + (Turno + 1));
 
-                Console.WriteLine($"\nSalud {Jugador2.Nombre}: {Math.Round(Jugador2.Salud,2)}");
+                Console.WriteLine($"\nSalud {Jugador2.Nombre}: {Math.Round(Jugador2.Salud, 2)}");
 
                 if (Jugador2.Salud > 0)
                 {
@@ -41,12 +41,14 @@ namespace JuegoRol
                 Console.WriteLine("\nGanador: ");
                 Jugador1.MostrarPersonaje();
                 personajes.Remove(Jugador2);
+                Jugador1.Curarse();
             }
             else if (Jugador2.Salud > Jugador1.Salud)
             {
                 Console.WriteLine("\nGanador: ");
                 Jugador2.MostrarPersonaje();
                 personajes.Remove(Jugador1);
+                Jugador2.Curarse();
             }
         }
 
@@ -54,5 +56,7 @@ namespace JuegoRol
         {
             return Jugadors[random.Next(0, Jugadors.Count)];
         }
+
+
     }
 }

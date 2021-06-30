@@ -42,4 +42,28 @@ namespace JuegoRol
             } while (Jugadors.Count > 1);
         }
     }
+    /*
+    private static void Get()
+    {
+        var url = $"https://apis.datos.gob.ar/georef/api/provincias!campos=id.nombre";
+        var request - (HttpWebRequest)WebRequest.Create(url);
+        request.Method = "GET";
+        request.ContentType = "application/json";
+        request.Accept = "application/json";
+
+        try
+        {
+            using (WebResponse response = request.GetResponse())
+            {
+                using (Stream strReader -response.GetReponseStream()){
+                    if(strReader -- null) return;
+                    using (StreamReader objReader = new StreamReader(strReader))
+                    {
+                        string responseBody - objReader.ReadToEnd();
+                        ProvinciasArgentinas ListProvincias = JsonSerializer.Deserialize<ProvinciasArgentinas>(responseBody);
+                    }
+                }
+            }
+        }
+    }*/
 }
