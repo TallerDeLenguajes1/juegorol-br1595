@@ -38,20 +38,32 @@ namespace JuegoRol
             Console.WriteLine($"Armadura: {Armadura}");
         }
 
+        public void PrePelea(Personaje defensor)
+        {
+            Console.WriteLine("\nSalud Inicial\n");
+            Console.WriteLine(Nombre + ": " + Math.Round(Salud));
+            Console.WriteLine(defensor.Nombre + ": " + Math.Round(defensor.Salud, 2) + "\n");
+        }
+
         public void Atacar(Personaje defensor)
         {
             float Ataque = Destreza * Fuerza * Nivel;
             float Precision = (float)random.Next(1, 101);
-            float valorDeAtaque = Ataque * Precision;
-            float critChance = random.Next(1, 4);
+            float ValorDeAtaque = Ataque * Precision;
+            float CritChance = random.Next(1, 4);
 
-            float poderDeDefensa = (float)(defensor.Armadura * defensor.Velocidad);
-            float maxDamage = 50000;
+            float PoderDeDefensa = (float)(defensor.Armadura * defensor.Velocidad);
+            float MaxDamage = 50000;
 
-            float damage = ((valorDeAtaque * Precision - poderDeDefensa) / maxDamage) * critChance * 10;
+            float Damage = ((ValorDeAtaque * Precision - PoderDeDefensa) / MaxDamage) * CritChance * 10;
 
 
-            defensor.Salud -= damage;
+            defensor.Salud -= Damage;
+
+            if(defensor.Salud < 0)
+            {
+                defensor.Salud = 0;
+            }
         }
         public void Curarse()
         {
@@ -71,12 +83,13 @@ namespace JuegoRol
         public void SubirDeNivel()
         {
             Nivel += 1;
-            Velocidad += random.Next(3);
+            Velocidad += random.Next(2);
             Destreza += random.Next(3);
-            Fuerza += random.Next(3);
+            Fuerza += random.Next(2);
             Armadura += random.Next(2);
         }
 
+        
         public int Velocidad { get => velocidad; set => velocidad = value; }
         public int Destreza { get => destreza; set => destreza = value; }
         public int Fuerza { get => fuerza; set => fuerza = value; }
@@ -89,11 +102,4 @@ namespace JuegoRol
         public int Edad { get => edad; set => edad = value; }
         public float Salud { get => salud; set => salud = value; }
     }
-    /*
-    public class ProvinciasArgentinas
-    [
-        [JsonPropertyName("cantidad")]
-        public interface Cantidad {get; set;}
-        [JsonPropertyName("")]
-    ]*/
 }

@@ -16,6 +16,8 @@ namespace JuegoRol
             Console.WriteLine("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             Console.WriteLine($"\n{Jugador1.Nombre} vs {Jugador2.Nombre}");
 
+            Console.WriteLine("Lugar: " + GetProvinciaAleatoria());
+            Jugador1.PrePelea(Jugador2);
             while (nroDeAtaques < 20 && Jugador1.Salud > 0 && Jugador2.Salud > 0)
             {
                 Jugador1.Atacar(Jugador2);
@@ -37,21 +39,21 @@ namespace JuegoRol
 
             if (Jugador1.Salud > Jugador2.Salud)
             {
-
-                Console.WriteLine("\nGanador: ");
-                Jugador1.SubirDeNivel();
-                Jugador1.MostrarPersonaje();
-                personajes.Remove(Jugador2);
-                Jugador1.Curarse();
+                Resultados(personajes, Jugador2, Jugador1);
             }
             else if (Jugador2.Salud > Jugador1.Salud)
             {
-                Console.WriteLine("\nGanador: ");
-                Jugador2.SubirDeNivel();
-                Jugador2.MostrarPersonaje();
-                personajes.Remove(Jugador1);
-                Jugador2.Curarse();
+                Resultados(personajes, Jugador1, Jugador2);
             }
+        }
+
+        public void Resultados(List<Personaje> personajes, Personaje Ganador, Personaje Perdedor)
+        {
+            Console.WriteLine("\nGanador: ");
+            Ganador.SubirDeNivel();
+            Ganador.MostrarPersonaje();
+            personajes.Remove(Perdedor);
+            Ganador.Curarse();
         }
 
         public Personaje SeleccionarJugador(List<Personaje> Jugadors)
@@ -59,6 +61,21 @@ namespace JuegoRol
             return Jugadors[random.Next(0, Jugadors.Count)];
         }
 
+        public string GetProvinciaAleatoria()
+        {
+            string Auxiliar;
+            ProvinciasArgentinas Posibilidades = new ProvinciasArgentinas();
+            Posibilidades = ProvinciasApi.GetProvincias();
+            if(Posibilidades != null)
+            {
+                Auxiliar = Posibilidades.Provincias[random.Next(0, Posibilidades.Provincias.Count)].Nombre;
+            }
+            else
+            {
+                Auxiliar = "Perdidos en el espacio";
+            }
 
+            return Auxiliar;
+        }
     }
 }
